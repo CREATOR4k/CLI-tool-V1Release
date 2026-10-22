@@ -1,0 +1,23 @@
+{
+  "name": "media-backup",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/scriptsV2.ts",
+  "bin": {
+    "media-backup": "./dist/scriptsV2.ts"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "archiver": "^7.0.1",
+    "commander": "^12.1.0",
+    "picocolors": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.2",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
