@@ -1,29 +1,64 @@
-# CLI Media Backup Tool 🗜
+# CLI-tool-V1Release
 
-**CLI-tool-V1Release** — an interactive CLI utility built with TypeScript and Node.js, designed to locate large files, compress them into ZIP archives, and remove the original files.
+> One-sentence description of what the tool does.
 
-## ✨ Features
-- **Recursive Search:** Scans directories while skipping symbolic links.
-- **Size-based Filtering:** Allows setting a minimum file size threshold (default is 15 MB).
-- **Compression & Cleanup:** Archives files into `.zip` format and deletes the source files.
-- **Interactive UI:** User-friendly prompts powered by `@clack/prompts`.
+![version](https://img.shields.io/badge/version-1.0.0-blue)
+![license](https://img.shields.io/badge/license-MIT-green)
 
-## 🛠 Technologies
-- TypeScript, Node.js, `commander`, `@clack/prompts`, `archiver`, `picocolors`.
+## Features
+- Feature one
+- Feature two
+- Feature three
 
-## 🚀 Installation
+## Requirements
+- <Language/runtime> <version>+
+- <Any other dependency>
 
-```bash
-git clone https://github.com
+## Installation
+
+### From source
+git clone https://github.com/CREATOR4k/CLI-tool-V1Release.git
 cd CLI-tool-V1Release
-npm install
-npm run build
-```
+<install command, e.g. pip install -e . / npm install / go build>
 
-## 💡 Usage
+## Usage
 
-- **Interactive Mode:** `node dist/CLI.js`
-- **Specify a Directory:** `node dist/CLI.js ./my-media-folder`
-- **With Size Filter:** `node dist/CLI.js ./my-media-folder --size 50`
+<tool-name> [command] [options]
 
-For full documentation and a list of available parameters, please refer to the repository [LICENSE](LICENSE).
+### Commands
+| Command | Description |
+|---------|-------------|
+| `command1` | What it does |
+| `command2` | What it does |
+
+### Options
+| Flag | Description |
+|------|-------------|
+| `-h, --help` | Show help |
+| `-v, --version` | Show version |
+
+## Examples
+
+# Basic example
+<tool-name> command1 input.txt
+
+# With options
+<tool-name> command2 --flag value
+
+## Configuration
+(Optional) Config file location, environment variables, defaults.
+
+## Project Structure
+(Optional) Short tree of the main files and folders.
+
+## Contributing
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/my-feature`
+3. Commit your changes
+4. Open a pull request
+
+## License
+Distributed under the MIT License. See `LICENSE` for details.
+
+## Contact
+CREATOR4k – https://github.com/CREATOR4k
