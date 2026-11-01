@@ -1,96 +1,29 @@
-# media-backup 🗜️
+# CLI Media Backup Tool 🗜
 
-**media-backup** — это интерактивная CLI-утилита для сканирования директорий, поиска тяжелых файлов и их автоматического сжатия в ZIP-архивы с последующим удалением оригиналов.
+**CLI-tool-V1Release** — an interactive CLI utility built with TypeScript and Node.js, designed to locate large files, compress them into ZIP archives, and remove the original files.
 
----
+## ✨ Features
+- **Recursive Search:** Scans directories while skipping symbolic links.
+- **Size-based Filtering:** Allows setting a minimum file size threshold (default is 15 MB).
+- **Compression & Cleanup:** Archives files into `.zip` format and deletes the source files.
+- **Interactive UI:** User-friendly prompts powered by `@clack/prompts`.
 
-## 📌 Содержание
-- [Особенности](#-особенности)
-- [Технологии](#-технологии)
-- [Установка](#-установка)
-- [Параметры](#-Параметры)
-- [Пример работы CLI](#-Пример-работы-CLI)
+## 🛠 Technologies
+- TypeScript, Node.js, `commander`, `@clack/prompts`, `archiver`, `picocolors`.
 
----
+## 🚀 Installation
 
-## ✨ Особенности
-
-* 🔍 **Рекурсивный поиск:** Глубокое сканирование папок (пропускает символические ссылки во избежание зацикливания).
-* 🎛️ **Фильтрация по размеру:** Позволяет задавать минимальный порог размера файлов для обработки.
-* 📦 **Быстрое сжатие:** Упаковывает тяжелые файлы в `.zip` (с оптимизированным уровнем сжатия) и автоматически удаляет исходный файл для экономии места.
-* 💬 **Интерактивный UI:** Если директория не передана аргументом, утилита предложит ввести путь и подтвердить сжатие через удобные prompt-диалоги.
-
----
-
-## 🛠 Технологии
-
-* **TypeScript** / **Node.js**
-* [commander](https://npmjs.com) — обработка аргументов командной строки.
-* [@clack/prompts](https://npmjs.com) — интерактивный и красивый CLI-интерфейс (спиннеры, инпуты, подтверждения).
-* [archiver](https://npmjs.com) — архивация файлов в ZIP.
-* [picocolors](https://npmjs.com) — форматирование и цветовое оформление консольного вывода.
-
----
-
-## 🚀 Установка
-
-1. Склонируйте репозиторий или скопируйте файлы проекта.
-2. Установите необходимые зависимости:
-   ```bash
-   npm install
-   ```
-3. Скомпилируйте TypeScript код (в зависимости от вашего настроенного скрипта сборки, например):
-   ```bash
-   npm run build
-   ```
-
----
-
-## 💡 Использование
-
-Вы можете запустить утилиту, передав целевую папку аргументом, либо в интерактивном режиме.
-
-### Интерактивный режим (без аргументов)
 ```bash
-node dist/index.js
-```
-*Утилита сама запросит путь к папке и уточнит необходимость архивации.*
-
-### Прямой запуск с указанием папки
-```bash
-node dist/index.js ./my-media-folder
+git clone https://github.com
+cd CLI-tool-V1Release
+npm install
+npm run build
 ```
 
-### Запуск с кастомным фильтром размера (например, искать файлы от 50 МБ)
-```bash
-node dist/index.js ./my-media-folder --size 50
-```
+## 💡 Usage
 
----
+- **Interactive Mode:** `node dist/CLI.js`
+- **Specify a Directory:** `node dist/CLI.js ./my-media-folder`
+- **With Size Filter:** `node dist/CLI.js ./my-media-folder --size 50`
 
-## ⚙️ Параметры
-
-| Команда / Опция | Описание | Дефолтное значение |
-| :--- | :--- | :--- |
-| `[dir]` | *Аргумент.* Путь к сканируемой директории. Если не указан, включится интерактивный ввод. | `undefined` |
-| `-s, --size <size>` | *Опция.* Минимальный размер файла в Мегабайтах для фильтрации. | `15` |
-| `-h, --help` | Вывод встроенной справки по командам. | — |
-| `-V, --version` | Вывод текущей версии утилиты. | — |
-
----
-
-## 📸 Пример-работы-CLI 
-
-```text
- 📂 Welcome to Cli-encrypt-tool 📂 
-
-✔ Enter the path to the directory to be scanned: › ./videos
-✔ Compress the large files found into a ZIP archive? … Yes
-
- Looking for larger files: 15 Mb in "/Users/username/videos"...
-
-Large file found: movie.mp4 [145.20 Mb]
-✅ Zip created & original deleted: movie.mp4.zip
-
-🛠️   Scanning completed successfully.
-```
+For full documentation and a list of available parameters, please refer to the repository [LICENSE](LICENSE).
