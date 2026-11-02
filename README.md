@@ -40,19 +40,18 @@ Includes `CLI.ts`, Python crypto utilities (`Encrypt.py`, `Decrypt.py`), and con
 ## Contributing & License
 Fork the repo, create a feature branch, commit changes, and open a pull request. Distributed under the MIT License.
 
-## Как это работает (Пошаговое описание)
+## How It Works (Step-by-Step Description)
 
-### 1. Поиск и архивация (TypeScript / Node.js)
-Основной процесс утилиты реализован на TypeScript и отвечает за оптимизацию дискового пространства:
-* **Запуск и сканирование:** При запуске `CLI.ts` утилита рекурсивно обходит указанную целевую директорию и анализирует размер каждого файла.
-* **Сжатие:** Все обнаруженные «тяжелые» (большие) файлы автоматически упаковываются в ZIP-архивы.
-* **Очистка:** После успешного создания архива скрипт автоматически и безвозвратно удаляет оригинальные несжатые файлы, освобождая место на диске.
+### 1. Search and Archiving (TypeScript / Node.js)
+The utility’s core process is implemented in TypeScript and is designed to optimize disk space:
+* **Execution and Scanning:** Upon launching `CLI.ts`, the utility recursively traverses the specified target directory and analyzes the size of each file.
+* **Compression:** All identified "heavy" (large) files are automatically packed into ZIP archives.
+* **Cleanup:** Once an archive has been successfully created, the script automatically and permanently deletes the original, uncompressed files, thereby freeing up disk space.
 
-### 2. Защита данных (Python)
-Вспомогательные скрипты `Encrypt.py` и `Decrypt.py` используются для криптографической защиты созданных архивов или других конфиденциальных файлов:
-* **Шифрование (`Encrypt.py`):** Принимает файл или папку, запрашивает секретный пароль и преобразует данные по алгоритму AES-256 в зашифрованный вид, исключая несанкционированный доступ.
-* **Дешифрование (`Decrypt.py`):** Выполняет обратный процесс — принимает зашифрованный файл, проверяет введенный пароль и восстанавливает данные в исходное состояние.
-
+### 2. Data Protection (Python)
+The auxiliary scripts `Encrypt.py` and `Decrypt.py` are used to provide cryptographic protection for the created archives or other sensitive files:
+* **Encryption (`Encrypt.py`):** This script takes a file or folder as input, prompts for a secret password, and uses the AES-256 algorithm to encrypt the data, preventing unauthorized access.
+* **Decryption (`Decrypt.py`):** This performs the reverse process—it takes an encrypted file, verifies the provided password, and restores the data to its original state.
 
 ## Contact
 CREATOR4k – https://github.com/CREATOR4k
