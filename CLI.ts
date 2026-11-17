@@ -4,8 +4,7 @@ import pc from 'picocolors';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as p from '@clack/prompts';
-import { ZipArchive } from 'archiver';
-
+import archiver from 'archiver'; // Исправленный импорт
 
 const program = new Command();
 
@@ -18,7 +17,7 @@ program
   .action(async (dir: string | undefined, options: { size: string }) => {
     let targetDir = dir;
 
-    console.log(('\n 📂 Welcome to Cli-encrypt-tool 📂 \n'));
+    console.log('\n 📂 Welcome to Cli-encrypt-tool 📂 \n');
 
     if (!targetDir) {
       const selectedDir = await p.text({
@@ -72,21 +71,24 @@ program
     console.log(pc.blue('\n🛠️   Scanning completed successfully.'));
   });
 
-// Функция для архивации файла в Zip
+// Исправленная функция для архивации файла в Zip
 async function zipFile(filePath: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const zipPath = `${filePath}.zip`;
     const output = fs.createWriteStream(zipPath);
     
-    // Создаем экземпляр архиватора
-    const archive = new ZipArchive({ zlib: { level: 0 } }); 
-
+    // Правильная инициализация архиватора для ZIP формата
+    // Уровень 0 (level: 0) означает "без сжатия" (Store), только упаковка. Если нужно сжатие, измените на 1-9.
+    const archive = archiver('zip', { zlib: { level: 0 } }); 
 
     output.on('close', () => resolve(zipPath));
     archive.on('error', (err) => reject(err));
 
     archive.pipe(output);
+    
+    // Метод .file() добавляет один конкретный файл в корень архива
     archive.file(filePath, { name: path.basename(filePath) });
+    
     archive.finalize();
   });
 }
@@ -118,22 +120,21 @@ export async function scanDirectory(currentPath: string, minSizeMb: number, shou
             );
 
             if (shouldZip) {
-  const spinner = p.spinner();
-  spinner.start(`File archiving ${file}...`);
-  
-  try {
-    const resultPath = await zipFile(fullPath);
-    
-    // Удаляем исходный файл после успешного создания zip-архива
-    await fs.promises.unlink(fullPath);
-    
-    spinner.stop(`${pc.green('✅ Zip created & original deleted:')} ${path.basename(resultPath)}`);
-  } catch (zipErr) {
-    spinner.stop(`${pc.red('❌ File compression/deletion error')} ${file}`);
-    console.log(zipErr);
-  }
-}
-
+              const spinner = p.spinner();
+              spinner.start(`File archiving ${file}...`);
+              
+              try {
+                const resultPath = await zipFile(fullPath);
+                
+                // Удаляем исходный файл после успешного создания zip-архива
+                await fs.promises.unlink(fullPath);
+                
+                spinner.stop(`${pc.green('✅ Zip created & original deleted:')} ${path.basename(resultPath)}`);
+              } catch (zipErr) {
+                spinner.stop(`${pc.red('❌ File compression/deletion error')} ${file}`);
+                console.log(zipErr);
+              }
+            }
           }
         }
       } catch (fileError) {
